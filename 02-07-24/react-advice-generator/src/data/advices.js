@@ -1,0 +1,1 @@
+export const advices = [{ "id": 163, "advice": "Big things have small beginnings." }, { "id": 169, "advice": "Do something selfless." }, { "id": 112, "advice": "It's not about who likes you, it's about who you like." }, { "id": 120, "advice": "A nod is as good as a wink to a blind horse." }, { "id": 137, "advice": "You're not that important; it's what you do that counts." }]
