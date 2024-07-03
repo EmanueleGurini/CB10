@@ -25,6 +25,10 @@
   margin-bottom: 16px;
 }
 
+.card__advice__mobile {
+  display: none;
+}
+
 /* Button */
 
 .card__button {
