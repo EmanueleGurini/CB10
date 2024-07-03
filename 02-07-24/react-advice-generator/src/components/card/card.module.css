@@ -1,0 +1,46 @@
+/* Card */
+
+.card {
+  background: #313a49;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  max-width: 540px;
+  padding: 48px 48px 64px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+}
+
+.card__advice::before,
+.card__advice::after {
+  content: '"';
+  letter-spacing: 0;
+}
+
+.card > img {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+/* Button */
+
+.card__button {
+  padding: 24px;
+  border-radius: 50%;
+  background: var(--neon-green);
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  transition: box-shadow 0.4s;
+}
+
+.card__button:hover {
+  background-color: #8affc5;
+  box-shadow: 0px 0px 40px #8affc5;
+}
