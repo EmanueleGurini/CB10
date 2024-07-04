@@ -2,6 +2,18 @@
 import { useState } from "react";
 
 function App() {
+  // ========================================
+
+  const obj = {
+    chiave1: "valore",
+  };
+
+  console.log("prima di pippo:", obj);
+
+  obj.chiave1 = "pippo";
+
+  console.log("dopo pippo:", obj);
+  // ========================================
   const [input, setInput] = useState({
     name: "",
     surname: "",
@@ -9,10 +21,10 @@ function App() {
   });
 
   const handleChange = (e) => {
+    const key = e.target.name;
     const value = e.target.value;
-    const name = e.target.name;
 
-    setInput((prevState) => ({ prevState, [name]: value }));
+    setInput({ ...input, [key]: value });
   };
   return (
     <>
