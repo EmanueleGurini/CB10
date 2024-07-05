@@ -1,16 +1,59 @@
 import { useState } from "react";
+
+import classNames from "classnames";
 import styles from "./App.module.css";
 
+/**
+ * Calcola l'interesse sull'amount
+ * @param {string} interestRate
+ * @param {string} mortageAmout
+ * @returns number
+ */
+const getInterest = (interestRate, mortageAmout) => {
+  return parseFloat((mortageAmout * interestRate) / 100);
+};
+
+/**
+ * Calcola la somma tra interesse e ammontare complessivo
+ * @param {string} mortageAmount
+ * @param {string} interest
+ * @returns number
+ */
+const getTotal = (mortageAmount, interest) => {
+  return parseFloat(mortageAmount) + parseFloat(interest);
+};
+
+/**
+ * Restituisce il numero delle rate da pagare
+ * @param {string} total
+ * @param {string} mortageTerm
+ * @returns number
+ */
+const getRates = (total, mortageTerm) => {
+  return parseFloat(total / mortageTerm);
+};
+
 function App() {
-  const [input, setInput] = useState({
-    mortageAmount: 0,
-    mortageTerm: 0,
-    interestRate: 0,
-  });
+  const inputDefault = {
+    mortageAmount: "",
+    mortageTerm: "",
+    interestRate: "",
+  };
+
+  const [input, setInput] = useState(inputDefault);
+  const [totaleRata, setTotaleRata] = useState(null);
+
+  const clear = () => {
+    setInput(inputDefault);
+    setTotaleRata(null);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("ciao sono io");
+    const interest = getInterest(input.interestRate, input.mortageAmount);
+    const total = getTotal(input.mortageAmount, interest);
+    const rateTotali = getRates(total, input.mortageTerm);
+    setTotaleRata(rateTotali);
   };
 
   const handleChange = (e) => {
@@ -27,8 +70,9 @@ function App() {
     });
   };
 
+  //const classPippo = input.interestRate ? styles.pippo : null;
   return (
-    <div className={styles.container}>
+    <div className={classNames(`${styles.container}`)}>
       {/* Start SX */}
       <div className={styles.container__sx}>
         <h1>Mortage Calculator</h1>
@@ -41,6 +85,7 @@ function App() {
             type="number"
             inputMode="numeric"
             placeholder="Mortage Amount"
+            value={input.mortageAmount}
             onChange={handleChange}
           />
 
@@ -50,6 +95,7 @@ function App() {
             type="number"
             inputMode="numeric"
             placeholder="Mortage Term"
+            value={input.mortageTerm}
             onChange={handleChange}
           />
 
@@ -59,20 +105,21 @@ function App() {
             type="number"
             inputMode="numeric"
             placeholder="Interest Rate"
+            value={input.interestRate}
             onChange={handleChange}
           />
 
           <input type="submit" />
+          <button onClick={clear}>ClearAll</button>
         </form>
+
         {/* End FORM */}
       </div>
       {/* End SX */}
       {/* Start DX */}
       <div className={styles.container__dx}>
         <h2>Your Result</h2>
-        <h3>Mortange Amount:{input.mortageAmount}</h3>
-        <h3>Mortange Term:{input.mortageTerm}</h3>
-        <h3>Interest Rate:{input.interestRate}</h3>
+        {totaleRata ? <p>Totale rata: {totaleRata}</p> : <p>pippo</p>}
       </div>
 
       {/* End DX */}
