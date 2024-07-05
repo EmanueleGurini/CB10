@@ -1,1 +1,14 @@
+.container {
+  width: 500px;
+  border: 2px solid coral;
+  display: flex;
+  background: lightcyan;
+}
 
+.container__sx form,
+.container__dx {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
