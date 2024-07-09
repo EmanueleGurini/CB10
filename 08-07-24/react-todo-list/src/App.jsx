@@ -47,7 +47,7 @@ function App() {
               <li key={todo.id}>
                 {todo.title}{" "}
                 <button id={todo.id} onClick={handleDelete}>
-                  Delete.
+                  Delete
                 </button>
               </li>
             );
