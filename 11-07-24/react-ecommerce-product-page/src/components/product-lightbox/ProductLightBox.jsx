@@ -33,10 +33,8 @@ function ProductLightBox() {
   const initialValue = products[0];
   const [selectedProduct, setSelectedProduct] = useState(initialValue);
 
-  const handleClick = (e) => {
-    const product = products.find(
-      (product) => product.id === e.currentTarget.id
-    );
+  const handleClick = (id) => {
+    const product = products.find((product) => product.id === id);
     setSelectedProduct(product);
   };
 
@@ -46,7 +44,13 @@ function ProductLightBox() {
       <ul className={classNames(styles["thumbnail-list"])}>
         {products.map((product) => {
           return (
-            <li key={product.id} id={product.id} onClick={handleClick}>
+            <li
+              key={product.id}
+              id={product.id}
+              onClick={function () {
+                handleClick(product.id);
+              }}
+            >
               <ThumbNail
                 isSelected={product.id == selectedProduct.id}
                 thumbNail={product.thumbNail}
