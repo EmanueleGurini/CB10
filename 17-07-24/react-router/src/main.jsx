@@ -7,8 +7,8 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import About from "./pages/About.jsx";
 import Contacts from "./pages/Contacts.jsx";
 import DefaultLayout from "./components/DefaultLayout.jsx";
+import UserPage from "./pages/UserPage.jsx";
 
-// patxmYfIE6IhMzi98.f7300b6bb8c243a7049da320c1a65cb625d1c32a5b8afb58a346eb6eafbfefe4
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,16 +22,14 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
-        children: [
-          {
-            path: "pippo",
-            element: <p>ciao so pippo</p>,
-          },
-        ],
       },
       {
         path: "contacts",
         element: <Contacts />,
+      },
+      {
+        path: "user/:id",
+        element: <UserPage />,
       },
     ],
   },

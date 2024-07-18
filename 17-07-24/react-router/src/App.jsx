@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
+import ItemUser from "./components/ItemUser";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users/1")
+    fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
-      .then((res) => setUser(res));
+      .then((res) => setUsers(res));
   }, []);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     if (!user) return;
     localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+  }, [user]); */
 
   return (
     <>
-      <p className="bg-green-300">{user && user.name}</p>
-      <p>ciao mondo</p>
+      <p className="bg-green-300">Lista utenti</p>
+      <ul>
+        {users.map((user) => {
+          return (
+            <li key={user.id}>
+              <ItemUser user={user} />
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
