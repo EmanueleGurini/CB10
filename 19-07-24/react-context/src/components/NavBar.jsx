@@ -30,7 +30,7 @@ const NavBar = () => {
         ))}
       </ul>
       <div className="bg-green-400 w-12 h-12 rounded-full flex justify-center items-center">
-        {products}
+        {products.length}
       </div>
     </nav>
   );
