@@ -3,6 +3,10 @@ export const labels = {
 	bookTableAuthor: "Author",
 	bookTableGenre: "Genre",
 	bookTableISBN: "ISBN",
+	bookTableBtnDetail: "Details",
 
-	bookList: "Book list"
+	bookList: "Book list",
+	leggiBookTitle: "Leggi Book",
+
+	navHome: "Home"
 }
