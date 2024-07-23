@@ -10,6 +10,13 @@ export const getBookList = () => {
 						genre: "fantascienza",
 						author: "Pippo e pluto",
 					},
+					{
+						id: "2",
+						isbn: "0-8783-3579-Y",
+						title: "Paperino e l'oro del Ruanda",
+						genre: "avventura",
+						author: "Pippo da solo",
+					},
 				];
 			});
 		}, 2000);
