@@ -8,5 +8,11 @@ export const labels = {
 	bookList: "Book list",
 	leggiBookTitle: "Leggi Book",
 
-	navHome: "Home"
+	navHome: "Home",
+	filterBookByTitle: "Filter Book by Title:",
+	insertBookTitle: "Insert Book Title",
+
+	isLoading: "Is loading...",
+
+	errorHuHo: "Hu-oh"
 }

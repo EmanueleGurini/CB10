@@ -27,7 +27,7 @@ function App() {
     getBooks();
   }, []);
 
-  if (isLoading) return <p>is loading..</p>;
+  if (isLoading) return <p>{labels.isLoading}</p>;
 
   return (
     <>
@@ -37,12 +37,12 @@ function App() {
             <h1 className="">{labels.bookList}</h1>
           </div>
           <div className="flex gap-2 items-center">
-            <h2>Filter book by title:</h2>
+            <h2>{labels.filterBookByTitle}</h2>
             <input
               className="border-slate-400 border-2 p-2"
               type="text"
               value={filter}
-              placeholder="Filter by title"
+              placeholder={labels.insertBookTitle}
               onChange={handleChange}
             />
           </div>
