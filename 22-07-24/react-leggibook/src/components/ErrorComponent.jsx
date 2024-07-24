@@ -1,3 +1,5 @@
+import { labels } from "../data/labels";
+
 function ErrorComponent({ children, message }) {
   return (
     <div className="grid h-screen place-content-center bg-white px-4">
@@ -22,7 +24,7 @@ function ErrorComponent({ children, message }) {
         </svg>
 
         <h1 className="mt-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Uh-oh!
+          {labels.errorHuHo}
         </h1>
 
         <p className="mt-4 text-gray-500">{message}</p>
