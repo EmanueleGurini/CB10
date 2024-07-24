@@ -43,6 +43,18 @@ export const getBookDetail = () => {
 	});
 };
 
+export const addBook = (body) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(
+				{
+					...body, id: self.crypto.randomUUID(),
+				}
+			)
+		}, 3000)
+	})
+}
+
 
 /* export const getBookList = async () => {
 	try {

@@ -7,6 +7,7 @@ import DefaultLayout from "./layouts/DefaultLayout.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BookDetailPage from "./pages/BookDetailPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import Create from "./pages/Create.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
         path: "books/:id",
         element: <BookDetailPage />,
       },
+      { path: "create", element: <Create /> },
     ],
   },
 ]);

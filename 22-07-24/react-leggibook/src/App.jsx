@@ -2,8 +2,10 @@ import { labels } from "./data/labels";
 import { useEffect, useState } from "react";
 import { getBookList } from "./api/bookClient";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
   const [bookList, setBookList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("");
@@ -33,6 +35,7 @@ function App() {
     <>
       <div className="flex justify-center">
         <main className="w-[1200px] ">
+          <button onClick={() => navigate(+1)}>avanti</button>
           <div className="p-4 ">
             <h1 className="">{labels.bookList}</h1>
           </div>
