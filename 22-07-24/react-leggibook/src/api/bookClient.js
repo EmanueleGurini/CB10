@@ -55,6 +55,18 @@ export const addBook = (body) => {
 	})
 }
 
+export const editBook = (body) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(
+				{
+					...body,
+				}
+			)
+		}, 3000)
+	})
+}
+
 
 /* export const getBookList = async () => {
 	try {

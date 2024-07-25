@@ -1,19 +1,37 @@
-import { useState } from "react";
-import { addBook } from "../api/bookClient";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getBookDetail, editBook } from "../api/bookClient";
 import BookForm from "../components/BookForm";
 
-function Create() {
+function Edit() {
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  const [isError, setIsError] = useState({
-    message: "",
-    isError: false,
-  });
+  const [book, setBook] = useState(null);
+  const [isError, setIsError] = useState({ message: "", isError: false });
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getBook = async (id) => {
+    try {
+      const data = await getBookDetail(id);
+      setBook(data);
+    } catch (error) {
+      console.log(error);
+      setIsError((prevState) => {
+        return { ...prevState, message: error.message, isError: true };
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getBook(id);
+  }, []);
 
   const handleSubmit = async (value) => {
     try {
-      const res = await addBook(value);
+      const res = await editBook({ ...value, id });
       console.log(res);
       navigate("/");
     } catch (error) {
@@ -24,19 +42,20 @@ function Create() {
     }
   };
 
+  if (isLoading) return <p>is loading...</p>;
+
   return (
     <div>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg">
           <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-            Insert the book here
+            Edit the book here
           </h1>
 
           <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
             Inserisci title, author, genre, isbn, description
           </p>
-
-          <BookForm onSubmit={handleSubmit} />
+          <BookForm value={book} onSubmit={handleSubmit} />
           {isError.isError && (
             <div
               role="alert"
@@ -56,4 +75,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default Edit;

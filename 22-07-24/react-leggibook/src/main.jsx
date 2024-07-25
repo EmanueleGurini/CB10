@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BookDetailPage from "./pages/BookDetailPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import Create from "./pages/Create.jsx";
+import Edit from "./pages/Edit.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
         element: <BookDetailPage />,
       },
       { path: "create", element: <Create /> },
+      {
+        path: "edit/:id",
+        element: <Edit />,
+      },
     ],
   },
 ]);
