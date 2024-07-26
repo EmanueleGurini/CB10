@@ -27,7 +27,6 @@ export const getBookList = () => {
 export const getBookDetail = () => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			/* reject({ message: "Errore bruttissimo" }) */
 			resolve(() => {
 				return {
 					id: "1",
@@ -42,6 +41,41 @@ export const getBookDetail = () => {
 		}, 500);
 	});
 };
+
+export const addBook = (body) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(
+				{
+					...body, id: self.crypto.randomUUID(),
+				}
+			)
+		}, 3000)
+	})
+}
+
+export const editBook = (body) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(
+				{
+					...body,
+				}
+			)
+		}, 3000)
+	})
+}
+
+export const deleteBook = (id) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(
+				`l'elemento ${id} è stato cancellato con successo`
+			)
+		}, 500)
+	})
+}
+
 
 
 /* export const getBookList = async () => {

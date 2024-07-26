@@ -1,6 +1,6 @@
 import { labels } from "./data/labels";
 import { useEffect, useState } from "react";
-import { getBookList } from "./api/bookClient";
+import { deleteBook, getBookList } from "./api/bookClient";
 import { Link } from "react-router-dom";
 
 function App() {
@@ -21,6 +21,17 @@ function App() {
 
   const handleChange = (e) => {
     setFilter(e.target.value.toLowerCase());
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteBook(id);
+      console.log(res);
+      setIsLoading(true);
+      getBooks();
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   useEffect(() => {
@@ -84,13 +95,25 @@ function App() {
                         <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                           {book.isbn}
                         </td>
-                        <td className="whitespace-nowrap px-4 py-2">
+                        <td className="whitespace-nowrap flex gap-2 px-4 py-2">
                           <Link
                             to={`/books/${book.id}`}
                             className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
                           >
                             {labels.bookTableBtnDetail}
                           </Link>
+                          <Link
+                            to={`/edit/${book.id}`}
+                            className="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
+                          >
+                            {labels.edit}
+                          </Link>
+                          <button
+                            onClick={() => handleDelete(book.id)}
+                            className="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+                          >
+                            {labels.delete}
+                          </button>
                         </td>
                       </tr>
                     );
