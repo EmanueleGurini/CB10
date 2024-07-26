@@ -27,7 +27,6 @@ export const getBookList = () => {
 export const getBookDetail = () => {
 	return new Promise((resolve) => {
 		setTimeout(() => {
-			/* reject({ message: "Errore bruttissimo" }) */
 			resolve(() => {
 				return {
 					id: "1",
@@ -66,6 +65,17 @@ export const editBook = (body) => {
 		}, 3000)
 	})
 }
+
+export const deleteBook = (id) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(
+				`l'elemento ${id} è stato cancellato con successo`
+			)
+		}, 500)
+	})
+}
+
 
 
 /* export const getBookList = async () => {

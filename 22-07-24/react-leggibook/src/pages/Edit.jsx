@@ -29,11 +29,11 @@ function Edit() {
     getBook(id);
   }, []);
 
-  const handleSubmit = async (value) => {
+  const handleEdit = async (body) => {
     try {
-      const res = await editBook({ ...value, id });
+      const res = await editBook({ id, ...body });
       console.log(res);
-      navigate("/");
+      navigate(`/books/${id}`, { replace: true });
     } catch (error) {
       console.log(error);
       setIsError((prevState) => {
@@ -55,7 +55,7 @@ function Edit() {
           <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
             Inserisci title, author, genre, isbn, description
           </p>
-          <BookForm value={book} onSubmit={handleSubmit} />
+          <BookForm value={book} onSubmit={handleEdit} />
           {isError.isError && (
             <div
               role="alert"

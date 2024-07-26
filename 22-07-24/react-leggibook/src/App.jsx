@@ -1,11 +1,9 @@
 import { labels } from "./data/labels";
 import { useEffect, useState } from "react";
-import { getBookList } from "./api/bookClient";
+import { deleteBook, getBookList } from "./api/bookClient";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function App() {
-  const navigate = useNavigate();
   const [bookList, setBookList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [filter, setFilter] = useState("");
@@ -25,6 +23,17 @@ function App() {
     setFilter(e.target.value.toLowerCase());
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const res = await deleteBook(id);
+      console.log(res);
+      setIsLoading(true);
+      getBooks();
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
   useEffect(() => {
     getBooks();
   }, []);
@@ -35,7 +44,6 @@ function App() {
     <>
       <div className="flex justify-center">
         <main className="w-[1200px] ">
-          <button onClick={() => navigate(+1)}>avanti</button>
           <div className="p-4 ">
             <h1 className="">{labels.bookList}</h1>
           </div>
@@ -96,10 +104,16 @@ function App() {
                           </Link>
                           <Link
                             to={`/edit/${book.id}`}
-                            className="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700"
+                            className="inline-block rounded bg-green-600 px-4 py-2 text-xs font-medium text-white hover:bg-green-700"
                           >
-                            Edit
+                            {labels.edit}
                           </Link>
+                          <button
+                            onClick={() => handleDelete(book.id)}
+                            className="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+                          >
+                            {labels.delete}
+                          </button>
                         </td>
                       </tr>
                     );
