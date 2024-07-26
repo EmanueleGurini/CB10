@@ -14,5 +14,12 @@ export const labels = {
 
 	isLoading: "Is loading...",
 
-	errorHuHo: "Hu-oh"
+	errorHuHo: "Hu-oh",
+
+	edit: "Edit",
+	delete: "Delete",
+	goBackHome: "Go back home",
+
+	createInsertBookHere: "Insert the book here"
+
 }
