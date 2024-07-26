@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getBookDetail, editBook } from "../api/bookClient";
 import BookForm from "../components/BookForm";
+import { toast } from "react-toastify";
 
 function Edit() {
   const { id } = useParams();
@@ -32,10 +33,14 @@ function Edit() {
   const handleEdit = async (body) => {
     try {
       const res = await editBook({ id, ...body });
-      console.log(res);
+      toast.success(`Libro ${body.title} modificato con successo!`, {
+        position: "top-right",
+      });
       navigate(`/books/${id}`, { replace: true });
     } catch (error) {
-      console.log(error);
+      toast.error(`${error}!`, {
+        position: "top-right",
+      });
       setIsError((prevState) => {
         return { ...prevState, message: error.message, isError: true };
       });

@@ -3,6 +3,7 @@ import { addBook } from "../api/bookClient";
 import { useNavigate } from "react-router-dom";
 import BookForm from "../components/BookForm";
 import { labels } from "../data/labels";
+import { toast } from "react-toastify";
 
 function Create() {
   const navigate = useNavigate();
@@ -16,9 +17,14 @@ function Create() {
     try {
       const res = await addBook(body);
       console.log(res);
+      toast.success(`${body.title} added!`, {
+        position: "top-right",
+      });
       navigate("/");
     } catch (error) {
-      console.log(error);
+      toast.error(`${error}!`, {
+        position: "top-right",
+      });
       setIsError((prevState) => {
         return { ...prevState, message: error.message, isError: true };
       });
