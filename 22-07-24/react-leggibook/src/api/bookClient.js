@@ -1,57 +1,49 @@
-export const getBookList = () => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(() => {
-				return [
-					{
-						id: "1",
-						isbn: "0-8783-3579-X",
-						title: "Paperino alla scoperta del mondo",
-						genre: "fantascienza",
-						author: "Pippo e pluto",
-					},
-					{
-						id: "2",
-						isbn: "0-8783-3579-Y",
-						title: "Paperino e l'oro del Ruanda",
-						genre: "avventura",
-						author: "Pippo da solo",
-					},
-				];
-			});
-		}, 1000);
-	});
+export const getBookList = async () => {
+	try {
+		const res = await fetch("http://localhost:3000/books");
+		return res.json()
+	} catch (error) {
+		throw Error(error)
+	}
 };
 
 
-export const getBookDetail = () => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(() => {
-				return {
-					id: "1",
-					isbn: "0-8783-3579-X",
-					title: "Paperino alla scoperta del mondo",
-					genre: "fantascienza",
-					author: "Pippo e pluto",
-					cover: "https://blog-cdn.reedsy.com/directories/admin/attachments/large_guerin-cover-7156b8.jpg",
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-				}
-			});
-		}, 500);
-	});
+export const getBookDetail = async (id) => {
+	try {
+		const res = await fetch(`http://localhost:3000/books-detail/${id}`);
+		return res.json()
+	} catch (error) {
+		throw Error(error)
+	}
 };
 
-export const addBook = (body) => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(
-				{
-					...body, id: self.crypto.randomUUID(),
-				}
-			)
-		}, 3000)
-	})
+export const addBook = async (body) => {
+
+	const id = self.crypto.randomUUID();
+	const bookNoDetail = { id, title: body.title, author: body.author, isbn: body.isbn, genre: body.genre }
+
+	try {
+
+		await fetch("http://localhost:3000/books", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(bookNoDetail)
+		})
+
+
+		const res = await fetch("http://localhost:3000/books-detail", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({ id, ...body, "cover": "https://blog-cdn.reedsy.com/directories/admin/attachments/large_guerin-cover-7156b8.jpg", })
+		})
+		return res.json()
+	} catch (error) {
+		throw Error(error)
+	}
 }
 
 export const editBook = (body) => {
@@ -66,26 +58,19 @@ export const editBook = (body) => {
 	})
 }
 
-export const deleteBook = (id) => {
-	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(
-				`l'elemento ${id} è stato cancellato con successo`
-			)
-		}, 500)
-	})
-}
-
-
-
-/* export const getBookList = async () => {
+export const deleteBook = async (id) => {
 	try {
 
-		const res = await fetch("https://jsonplaceholde.typicode.com/users");
+		await fetch(`http://localhost:3000/books/${id}`, {
+			method: "DELETE"
+		});
+
+		const res = await fetch(`http://localhost:3000/books-detail/${id}`, {
+			method: "DELETE"
+		});
+
 		return res.json()
-
 	} catch (error) {
-		throw new Error("Error:", error)
-
+		throw Error(error)
 	}
-};  */
+}

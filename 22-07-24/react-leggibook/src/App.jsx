@@ -29,7 +29,7 @@ function App() {
   const handleDelete = async (id) => {
     try {
       const res = await deleteBook(id);
-      toast.success(`${res} eliminato con success!`, {
+      toast.success(`${res.title} eliminato con success!`, {
         position: "top-right",
       });
 
