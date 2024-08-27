@@ -1,4 +1,22 @@
 {
-  "books": [],
-  "books-detail": []
+  "books": [
+    {
+      "id": "5e453d46-5f03-442e-9719-358c0515d0b9",
+      "title": "dkdk",
+      "author": "dkdk",
+      "isbn": "dkdk",
+      "genre": "dkdk"
+    }
+  ],
+  "books-detail": [
+    {
+      "id": "5e453d46-5f03-442e-9719-358c0515d0b9",
+      "title": "dkdk",
+      "author": "dkdk",
+      "genre": "dkdk",
+      "description": "dkdkd",
+      "isbn": "dkdk",
+      "cover": "https://blog-cdn.reedsy.com/directories/admin/attachments/large_guerin-cover-7156b8.jpg"
+    }
+  ]
 }
