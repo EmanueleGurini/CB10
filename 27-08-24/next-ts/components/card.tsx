@@ -1,15 +1,26 @@
 "use client";
-import { IPost } from "@/app/page";
-import React from "react";
 
-interface ICard {
+import React from "react";
+export interface IPost {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  author: IAuthor;
+}
+
+export interface ICard {
   post: IPost;
+}
+
+export interface IAuthor {
+  name: string;
+  role: string;
 }
 
 const Card = ({ post }: ICard) => {
   return (
     <article
-      onClick={() => console.log("pippo")}
       key={post.id}
       className="flex max-w-xl flex-col items-start justify-between"
     >

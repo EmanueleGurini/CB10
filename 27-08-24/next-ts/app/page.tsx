@@ -1,35 +1,21 @@
-import Card from "@/components/card";
+import { getUser } from "@/action/get-user";
+import { getUsers } from "@/action/get-users";
+import Button from "@/components/Button";
 
-export interface IPost {
-  id: string;
-  category: string;
-  title: string;
-  description: string;
-  author: IAuthor;
-}
+export default async function Home() {
+  const user = await getUser();
+  const users = await getUsers();
 
-export interface IAuthor {
-  name: string;
-  role: string;
-}
-
-const blogpost: IPost = {
-  id: "39393",
-  category: "pippo",
-  title: "pluto",
-  description: "topolino",
-  author: {
-    name: "pippo",
-    role: "ciao",
-  },
-};
-
-export default function Home() {
   return (
     <main>
-      <h1>hello, next</h1>
-
-      <Card post={blogpost} />
+      <h1>hello, {user.name}</h1>
+      {users.map((user) => {
+        return (
+          <li key={user.id}>
+            Name: {user.name} <Button user={user} />
+          </li>
+        );
+      })}
     </main>
   );
 }
