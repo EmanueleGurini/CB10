@@ -1,18 +1,18 @@
-import { getUser } from "@/action/get-user";
 import { getUsers } from "@/action/get-users";
-import Button from "@/components/Button";
+import Link from "next/link";
 
 export default async function Home() {
-  const user = await getUser();
   const users = await getUsers();
 
   return (
     <main>
-      <h1>hello, {user.name}</h1>
       {users.map((user) => {
         return (
           <li key={user.id}>
-            Name: {user.name} <Button user={user} />
+            Name: {user.name}{" "}
+            <Link className="underline" href={`/user/${user.id}`}>
+              Vai alla pagina utente
+            </Link>
           </li>
         );
       })}
