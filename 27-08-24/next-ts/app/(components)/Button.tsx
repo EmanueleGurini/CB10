@@ -1,6 +1,6 @@
 "use client";
 
-import { IUser } from "@/model/user";
+import { IUser } from "@/app/(models)/user";
 
 interface IButton {
   user: IUser;

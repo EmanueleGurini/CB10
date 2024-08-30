@@ -1,7 +1,7 @@
 "use client";
 
 import { getUser } from "@/action/get-user";
-import { IUser } from "@/model/user";
+import { IUser } from "@/app/(models)/user";
 import { useState, useEffect, useTransition } from "react";
 
 function User() {

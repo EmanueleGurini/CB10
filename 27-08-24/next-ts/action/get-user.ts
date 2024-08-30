@@ -1,4 +1,4 @@
-import { IUser } from "@/model/user";
+import { IUser } from "@/app/(models)/user";
 
 export const getUser = async (id: string): Promise<IUser> => {
   try {
